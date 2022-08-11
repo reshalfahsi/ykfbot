@@ -1,6 +1,6 @@
 # Your Kind Friend Bot: Unreliable Chatbot
 
-Your typical kind friend who talk nonsense just to kill time.
+Your typical kind friend who talk nonsense just to kill time. Visit [here](https://t.me/yourkindfriendbot)
 
 ## How to Deploy
 
