@@ -15,7 +15,7 @@
 # ==============================================================================
 
 from .model import create_model
-from .utils import get_vectorizer
+from .utils import get_vectorizer, preprocess_text
 from .constant import MODEL_URL, MAX_LENGTH
 
 import urllib.request
