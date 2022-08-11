@@ -40,7 +40,7 @@ class YourKindFriendBot(object):
         VOCAB = self.vectorizer.get_vocabulary()
 
         # Mapping the input sentence to tokens and adding start and end tokens
-        tokenized_input_sentence = vectorizer(
+        tokenized_input_sentence = self.vectorizer(
             tf.constant("[start] " + preprocess_text(input_sentence) + " [end]")
         )
         # Initializing the initial sentence consisting of only the start token.
