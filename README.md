@@ -1,6 +1,7 @@
 # Your Kind Friend Bot: Unreliable Chatbot
 
 <div align="center">
+  <a href="https://github.com/reshalfahsi/ykfbot/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="license"></a>
   <a href="https://github.com/reshalfahsi/ykfbot/actions/workflows/deploy.yml"><img src="https://github.com/reshalfahsi/ykfbot/actions/workflows/deploy.yml/badge.svg" alt="deployment testing"></a>
 </div>
 

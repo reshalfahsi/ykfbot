@@ -33,7 +33,7 @@ def remove_dir(d):
         subprocess.check_output(["rm", "-rf", os.path.abspath(d)])
 
 
-def load_conversations():
+def load_conversations(path_to_movie_lines, path_to_movie_conversations):
     # Helper function for loading the conversation splits
     id2line = {}
     with open(path_to_movie_lines, errors="ignore") as file:
@@ -84,7 +84,7 @@ def get_vectorizer():
         path_to_dataset, "movie_conversations.txt"
     )
 
-    questions, answers = load_conversations()
+    questions, answers = load_conversations(path_to_movie_lines, path_to_movie_conversations)
 
     vectorizer = layers.TextVectorization(
         VOCAB_SIZE,
