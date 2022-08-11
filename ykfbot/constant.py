@@ -1,0 +1,28 @@
+# MIT License
+#
+# Copyright (c) 2022 Resha Dwika Hefni Al-Fahsi
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# Modified from:
+#    - https://github.com/keras-team/keras-io/blob/master/examples/nlp/text_generation_fnet.py
+# ==============================================================================
+
+
+VOCAB_SIZE = 8192
+BUFFER_SIZE = 20000
+MAX_LENGTH = 100
+EMBED_DIM = 400
+LATENT_DIM = 600
+NUM_HEADS = 8
+BATCH_SIZE = 32
+
+MODEL_URL = (
+    "https://github.com/reshalfahsi/ykfbot/releases/download/pre-v.0.0.0/ykfbot.h5"
+)
