@@ -63,7 +63,7 @@ def main():
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
 
-    PORT = int(os.environ.get("PORT", "8443"))
+    PORT = int(os.environ.get("PORT", "5000"))
     TOKEN = os.environ.get("TOKEN")
 
     updater = Updater(TOKEN, use_context=True)
@@ -89,11 +89,5 @@ def main():
         webhook_url="https://ykfbot.herokuapp.com/" + TOKEN,
     )
 
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
-    updater.idle()
 
-
-if __name__ == "__main__":
-    main()
+main()
