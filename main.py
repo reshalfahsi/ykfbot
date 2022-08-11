@@ -89,5 +89,5 @@ def main():
         webhook_url="https://ykfbot.herokuapp.com/" + TOKEN,
     )
 
-
-main()
+if __name__ == '__main__':
+    main()
