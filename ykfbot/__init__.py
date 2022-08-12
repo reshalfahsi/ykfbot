@@ -20,6 +20,7 @@ from .constant import MODEL_URL, MAX_LENGTH
 
 import urllib.request
 import tensorflow as tf
+import gc
 
 from random_word import RandomWords
 
@@ -27,6 +28,7 @@ from random_word import RandomWords
 class YourKindFriendBot(object):
     def __init__(self):
         self.vectorizer = get_vectorizer()
+        self.VOCAB = self.vectorizer.get_vocabulary()
 
         urllib.request.urlretrieve(MODEL_URL, "ykfbot.h5")
 
@@ -37,18 +39,17 @@ class YourKindFriendBot(object):
 
     def reply(self, input_sentence):
 
-        VOCAB = self.vectorizer.get_vocabulary()
-
         # Mapping the input sentence to tokens and adding start and end tokens
         tokenized_input_sentence = self.vectorizer(
             tf.constant("[start] " + preprocess_text(input_sentence) + " [end]")
         )
         # Initializing the initial sentence consisting of only the start token.
-        tokenized_target_sentence = tf.expand_dims(VOCAB.index("[start]"), 0)
+        tokenized_target_sentence = tf.expand_dims(self.VOCAB.index("[start]"), 0)
         decoded_sentence = ""
         new_sentence = True
         apostrophe = ["t", "re", "ll", "m", "s"]
         punctuation = [".", "?", "!"]
+        prediction = None
 
         for i in range(MAX_LENGTH):
             # Get the predictions
@@ -66,12 +67,12 @@ class YourKindFriendBot(object):
             )
             # Calculating the token with maximum probability and getting the corresponding word
             sampled_token_index = tf.argmax(predictions[0, i, :])
-            sampled_token = VOCAB[sampled_token_index.numpy()]
+            sampled_token = self.VOCAB[sampled_token_index.numpy()]
             # If sampled token is the end token then stop generating and return the sentence
-            if tf.equal(sampled_token_index, VOCAB.index("[end]")):
+            if tf.equal(sampled_token_index, self.VOCAB.index("[end]")):
                 break
 
-            if tf.equal(sampled_token_index, VOCAB.index("[UNK]")):
+            if tf.equal(sampled_token_index, self.VOCAB.index("[UNK]")):
                 sampled_token = self.r.get_random_word(includePartOfSpeech="noun")
 
             if i == 0 or new_sentence or sampled_token == "i":
@@ -92,5 +93,8 @@ class YourKindFriendBot(object):
             tokenized_target_sentence = tf.concat(
                 [tokenized_target_sentence, [sampled_token_index]], 0
             )
+
+        del apostrophe, punctuation, tokenized_target_sentence, tokenized_input_sentence, prediction
+        gc.collect()
 
         return decoded_sentence[:-1]
