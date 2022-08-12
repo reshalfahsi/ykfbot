@@ -48,6 +48,7 @@ class YourKindFriendBot(object):
         decoded_sentence = ""
         new_sentence = True
         apostrophe = ["t", "re", "ll", "m"]
+        punctuation = [".", "?", "!"]
 
         for i in range(MAX_LENGTH):
             # Get the predictions
@@ -77,7 +78,7 @@ class YourKindFriendBot(object):
                 sampled_token = sampled_token.title()
                 new_sentence = False
 
-            if sampled_token == ".":
+            if sampled_token in punctuation:
                 decoded_sentence = decoded_sentence[:-1]
                 new_sentence = True
 
