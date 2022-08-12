@@ -47,7 +47,7 @@ class YourKindFriendBot(object):
         tokenized_target_sentence = tf.expand_dims(VOCAB.index("[start]"), 0)
         decoded_sentence = ""
         new_sentence = True
-        apostrophe = ["t", "re", "ll", "m"]
+        apostrophe = ["t", "re", "ll", "m", "s"]
         punctuation = [".", "?", "!"]
 
         for i in range(MAX_LENGTH):
