@@ -1,4 +1,5 @@
 # From: https://github.com/remarkablemark/github-actions-heroku-deploy/blob/master/.github/workflows/deploy.yml
+# From: https://github.com/BogDAAAMN/deta-deploy-action/blob/main/action.yml
 
 name: deploy
 on: push
@@ -15,3 +16,36 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
+
+
+
+# Move to deta.sh? Maybe not.
+# runs:
+#   using: "composite"
+#   steps:
+#     # Install Deta CLI as per docs
+#     # https://docs.deta.sh/docs/cli/install
+#     - name: Install Deta CLI
+#       shell: bash
+#       run: |
+#         curl -fsSL https://get.deta.dev/cli.sh | sh
+#     # Using the access token and existing Deta micro and project,
+#     # clone the micro and copy .deta metadata folder to use it in deploy
+#     # https://docs.deta.sh/docs/cli/commands#deta-clone
+#     - name: Clone Deta Metadata
+#       shell: bash
+#       run: |
+#         export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
+#         ~/.deta/bin/deta clone --name ${{ secrets.DETA_PROJECT }} --project ${{ secrets.DETA_PROJECT }} tmp/
+#         cp -r tmp/.deta .
+#     # Using the access token, deploy the project to Deta
+#     # https://docs.deta.sh/docs/cli/commands#deta-deploy
+#     - name: Deploy to Deta
+#       shell: bash
+#       run: |
+#         export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
+#         ~/.deta/bin/deta deploy
+
+# branding:
+#   icon: check-circle
+#   color: purple

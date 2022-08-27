@@ -10,3 +10,7 @@ Your typical kind friend who talk nonsense just to kill time. Visit [here](https
 ## How to Deploy
 
 Read [this](https://remarkablemark.org/blog/2021/03/12/github-actions-deploy-to-heroku/)!
+
+## Announcement
+
+This bot will die on November 28, 2022.

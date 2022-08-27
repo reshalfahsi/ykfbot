@@ -18,6 +18,10 @@
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
+import requests
+import numpy as np
+import cv2
+import uuid
 
 from ykfbot import YourKindFriendBot
 
@@ -47,9 +51,20 @@ def help(update, context):
     update.message.reply_text("Just type, it will reply.")
 
 
-def reply(update, context):
+def reply_text(update, context):
     """Reply the user message."""
     update.message.reply_text(bot.reply(update.message.text))
+
+
+def reply_photo(update, context):
+    files = {'file': update.message.photo}
+    response = requests.post("https://wpir-dnjf-8439.herokuapp.com/predict", files=files)
+    image = np.asarray(bytearray(response.content), dtype=np.uint8)
+    image = cv2.imdecode(image, -1)
+    filename = "result-{}.jpg".format(uuid.uuid4())
+    cv2.imwrite(filename, image)
+    update.message.reply_photo(photo=open(filename, 'rb'), caption="I found something in this image.")
+    os.remove(filename)
 
 
 def error(update, context):
@@ -76,7 +91,8 @@ def main():
     dp.add_handler(CommandHandler("help", help))
 
     # on noncommand i.e message - echo the message on Telegram
-    dp.add_handler(MessageHandler(Filters.text, reply))
+    dp.add_handler(MessageHandler(Filters.text, reply_text))
+    dp.add_handler(MessageHandler(Filters.photo, reply_photo))
 
     # log all errors
     dp.add_error_handler(error)

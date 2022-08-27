@@ -2,3 +2,6 @@ python-telegram-bot==13.8.1
 PyYAML
 tensorflow-cpu
 random-word
+requests
+numpy
+opencv-python

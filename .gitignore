@@ -17,3 +17,4 @@ __pycache__
 docs/_build
 
 .env
+.deta
