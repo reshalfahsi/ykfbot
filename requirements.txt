@@ -4,4 +4,4 @@ tensorflow-cpu
 random-word
 requests
 numpy
-opencv-python
+opencv-python-headless==4.2.0.32
