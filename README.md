@@ -5,7 +5,15 @@
   <a href="https://github.com/reshalfahsi/ykfbot/actions/workflows/deploy.yml"><img src="https://github.com/reshalfahsi/ykfbot/actions/workflows/deploy.yml/badge.svg" alt="deployment testing"></a>
 </div>
 
-Your typical kind friend who talk nonsense just to kill time. It can response to text or image. Visit [here](https://t.me/yourkindfriendbot).
+
+<div align="center">
+
+<img src="https://reshalfahsi.github.io/public/ykfbot.gif" width="400">
+
+</div>
+
+
+Your typical kind friend who talk nonsense just to kill time. It can respond to text or image. Visit [here](https://t.me/yourkindfriendbot).
 
 ## How to Deploy
 
