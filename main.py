@@ -48,7 +48,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text("Just type, it will reply.")
+    update.message.reply_text("Just type or send an image, it will reply.")
 
 
 def reply_text(update, context):
@@ -57,12 +57,16 @@ def reply_text(update, context):
 
 
 def reply_photo(update, context):
+    logger.info("Receive image from user.")
     files = {'file': update.message.photo}
+    logger.info("Send image to API.")
     response = requests.post("https://wpir-dnjf-8439.herokuapp.com/predict", files=files)
+    logger.info("Process the response.")
     image = np.asarray(bytearray(response.content), dtype=np.uint8)
     image = cv2.imdecode(image, -1)
     filename = "result-{}.jpg".format(uuid.uuid4())
     cv2.imwrite(filename, image)
+    logger.info("Send result to user.")
     update.message.reply_photo(photo=open(filename, 'rb'), caption="I found something in this image.")
     os.remove(filename)
 
