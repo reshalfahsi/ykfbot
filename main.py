@@ -69,8 +69,12 @@ def reply_photo(update, context):
     image = np.asarray(bytearray(response.content), dtype=np.uint8)
     image = cv2.imdecode(image, -1)
     cv2.imwrite(filename, image)
+    logger.info("Send image to API.")
+    response = requests.post("https://image-captioning-69420.herokuapp.com/predict", files=files)
+    logger.info("Process the response.")
+    caption = response.content.decode("utf-8").replace('"', '')
     logger.info("Send result to user.")
-    update.message.reply_photo(photo=open(filename, 'rb'), caption="I found something interesting in this image.")
+    update.message.reply_photo(photo=open(filename, 'rb'), caption=caption)
     os.remove(filename)
 
 
